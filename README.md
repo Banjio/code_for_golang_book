@@ -26,3 +26,28 @@ will give you more information about go
 2. If you found a package you want to include you can see under index what to import
 3. If you import the package for the first time it will throw an error. This is because the go mod file need to be updated so that it includes the imported module
 4. Call `go mod tidy` so that the requirements are downloaded
+
+### Create a module callable from another module
+
+https://go.dev/doc/tutorial/create-module
+
+1. Create module in the same way you created hello_world
+2. Create a function that takes input parameter(s) and returns somethin
+   
+```go
+func TestFunc(param string, param1 int) nil {
+	return nil
+}
+```
+
+3. Call code from other module
+   1. For that we edit the `hello.go` file so that it uses the `greetings.Hello`  function and import example.com/greetings
+   2. In order for the hello package to find greetings we have to edit the go mod file `$ go mod edit -replace example.com/greetings=../greetings`
+   3. Once again run `go mod tidy` so that all dependencies are synced
+
+### Error handling
+
+https://go.dev/doc/tutorial/handle-errors
+
+1. See modified `greetings.Hello` function
+2. See modified `hello.main` function
