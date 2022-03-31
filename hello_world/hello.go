@@ -30,7 +30,8 @@ func main() {
     log.SetFlags(0)
 
 	//Request greetings
-	message, err := greetings.Hello("")
+	names := []string{"Tim", "Grewe", "Max"}
+	message, err := greetings.Hellos(names)
 	// If an err is returned print to console and exit
 	if err != nil {
 		log.Fatal(err)

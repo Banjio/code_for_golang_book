@@ -51,3 +51,53 @@ https://go.dev/doc/tutorial/handle-errors
 
 1. See modified `greetings.Hello` function
 2. See modified `hello.main` function
+
+
+### Slice type
+
+https://go.dev/doc/tutorial/random-greeting
+
+* Go slices are like list in slices. Unlike gos arrays slices change dynamically as items are added or removed
+* `[]string{}`initializes a slice type `[]` omits the size of the array making it a slice
+* init functions are automatically called on statup of th eprogramm
+
+### For loop and maps
+
+https://go.dev/doc/tutorial/greetings-multiple-people
+
+* We can also add slices to functions and let it return maps like this func A(list []string) (map[string], error){}
+* In go maps are initialized with `make(map[key-type]value-type)`
+* `for` loop in `range`returns two value the index of the current item and a copy of the item's value. Similiar like in python you can use the balank identifier `_`if you want to omit one of both. &Rightarrow; Syntax of loop: `for _, name := range names { ... }`
+
+### Build in test module
+
+https://go.dev/doc/tutorial/add-a-test
+
+* Files that end with `_test` are automatically recogniced by `$ go test`. 
+* Test funcion have the form `TestName`
+* Giving a pointer to the T type  inside a test function `func MyTest(t * testing.T)`, thus it methods can be used (similiar method like assert and) for testing logging
+*  Run tests with `$ go test` or `$ go test -v` for verbose output
+
+### Build the programm hello_world with
+
+* `$ go build` inside a go directory will build the package to an executable, which has the correct format depending on the plattform architecture
+* Currently you can only execute the programm inside the directory 
+Thus to install a programm and make it executable from anywhere on the system we have to do the following:
+
+* To check gos install path run `$ go list -f '{{.Target}}'`, e.g., the command's output might say /home/gopher/bin/hello, meaning that binaries are installed to /home/gopher/bin. You'll need this install directory in the next step.
+* To add the go install path to your shell run `$  export PATH=$PATH:/home/maxbeier/go/bin/`
+* Or alternatively if you already have a bin path on your path where yo want to install programm you can do `go env -w GOBIN=/path/to/your/bin`
+* Finally run `$ go install`to install the program
+
+## Multi Module workspaces
+
+If you develop code in multiple packages in the same folder you need to set up a multi module workspaces, because otherwise the go language server will throws errors and tell "you are not on a go path" (That filthy language server tho)
+
+# General remarks
+
+* Only functions with upper case are exported for use in other modules (thus functions with lower case are private)
+
+
+# PeP 8 of GO 
+
+https://go.dev/doc/effective_go

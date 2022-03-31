@@ -4,6 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"rsc.io/quote"
+	"math/rand"
+	"time"
+
 )
 
 
@@ -27,5 +30,41 @@ func Hello(name string) (string, error) {
 	}
 
 	// With a name given return the usual message
-	return HelloIamAwesome(name), nil
+	// This breaks the hello function to see a failing test
+	//message := fmt.Sprint(randomFormat())
+
+	message := fmt.Sprintf(randomFormat(), name)
+	return message, nil
+
 }
+
+func Hellos(names []string) (map[string]string, error){
+	// A map to associate names with messages
+	messages := make(map[string]string)
+	//Loop through received slices of names, calling the hello function each time to get a message
+	for _, name := range names {
+		message, err := Hello(name)
+		if err != nil {
+			return nil, err
+		}
+		messages[name] = message
+	}
+	return messages, nil
+}
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
+}
+
+func randomFormat() string {
+	// A slice of message formats. 
+	formats := []string{
+		"Hi, %v. Welcome!",
+		"Oy, Get on that train, %v!",
+		"HAIL HYDRA, %v!",
+	}
+
+	// Return a randomly selected message by specifying a random slice
+	return formats[rand.Intn(len(formats))]
+}
+
