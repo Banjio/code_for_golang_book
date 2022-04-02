@@ -91,11 +91,15 @@ Thus to install a programm and make it executable from anywhere on the system we
 
 ## Multi Module workspaces
 
+https://go.dev/doc/tutorial/workspaces
+
 If you develop code in multiple packages in the same folder you need to set up a multi module workspaces, because otherwise the go language server will throws errors and tell "you are not on a go path" (That filthy language server tho)
+
+* In workspace folder (that has multiple golang modules as subfolders)  run go work init ./go_submodule
 
 # General remarks
 
-* Only functions with upper case are exported for use in other modules (thus functions with lower case are private)
+* Only functions with upper case are exported for use in other modules (thus functions with lower case are private) 
 
 
 # PeP 8 of GO 
